@@ -45,6 +45,9 @@ class App extends React.Component<Props, InternalState> {
                     />
                 </React.Fragment>
                 }
+                <div className="content">
+                    <span>Dummy content</span>
+                </div>
                 <LMSFooter/>
             </div>
         );
