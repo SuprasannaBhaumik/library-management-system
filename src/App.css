@@ -3,3 +3,7 @@
   position: relative;
   min-height: 100vh;
 }
+
+.encloser{
+    padding: 50px 300px 0 300px;
+}
