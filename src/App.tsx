@@ -1,14 +1,13 @@
 import React from 'react';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-
 import LMSHeader  from './application/view/LMSHeader';
 import LMSFooter  from './application/view/LMSFooter';
 import Home from './application/view/Home';
-
-
-import { Redirect, Route, Switch } from 'react-router-dom';
 import AccessAndAuthorization from './login/view/AccessAndAuthorization';
+
+
 
 interface InternalState {
     username: string;

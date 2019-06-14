@@ -12,7 +12,7 @@ export type LoginAction =
     | {type: typeof LoginActionTypes.LMS_LOGIN_SUCCESS, payload: Profile}
     | {type: typeof LoginActionTypes.LMS_LOGIN_FAILURE}
 
-export function loginRequest(payload: string): LoginAction {
+export function loadUserProfile(payload: string): LoginAction {
     return { type: LoginActionTypes.LMS_LOGIN_REQUEST, payload};
 };
 

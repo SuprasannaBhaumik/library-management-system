@@ -2,7 +2,7 @@ import { Profile } from "../model/Profile";
 
 import { State } from "../../state/index";
 
-export const getProfile =
+export const getSelectedProfile =
     (state: State) => state.login.data.profile;
 
 

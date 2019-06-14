@@ -1,5 +1,8 @@
+import axios from 'axios';
 import { LoginAction } from '../action/LoginAction';
 import { Profile } from '../model/Profile';
+import { Dispatch } from 'redux';
+import { loadLoginSuccess, loadLoginFailure } from '../action/LoginAction';
 
 const defaultProfile: Profile = {
     username: '',
@@ -11,21 +14,19 @@ const defaultProfile: Profile = {
     zipCode: 1
 }
 
-/*export function loginReducer(state: Profile = defaultProfile, action: LoginAction) {
-    switch (action.type) {
-        case 'LMS_LOGIN_REQUEST':
+export function loginReducer(action: LoginAction, dispatch: Dispatch) {
+    if(action.type === 'LMS_LOGIN_REQUEST') {
             axios.get('http://localhost:9000/profile/' + action.payload)
-            .then(function(response) {
-                return response;
+            .then(function(response: any) {
+				console.log('result');
+				console.log(response);
+				dispatch(loadLoginSuccess(response));
             })
-            .catch(function (error) {
-                console.log(error);
-                return {...defaultProfile, username: action.payload};
+            .catch(function (error: any) {
+                dispatch(loadLoginFailure(error))
             })
-        default:
-           return state;
     }
-}*/
+}
 
 export function reduceLoginSuccess(state: Profile = defaultProfile, action: LoginAction) {
     switch (action.type) {
