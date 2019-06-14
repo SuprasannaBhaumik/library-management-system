@@ -10,22 +10,20 @@ import Col from 'react-bootstrap/Col';
 
 
 interface Props {
-	success(username: string): any
+	name: string;
+	loggedIn(username: string, img: string): any;
 }
 
 interface InternalState {
-	username: string;
+
 }
 
 class AccessAndAuthorization extends React.Component<Props, InternalState> {
 
 	constructor(props: Props) {
 		super(props);
-		this.state = {
-			username: ''
-		};
+		this.responseGoogle = this.responseGoogle.bind(this);
 	}
-
 
 	render() {
 		return (
@@ -63,12 +61,11 @@ class AccessAndAuthorization extends React.Component<Props, InternalState> {
 	}
 
 	public responseGoogle(response: any){
-		// the real code here will be to update the state of the application, and not individual state
-		this.props.success(response.w3.ofa);
+		this.props.loggedIn(response.profileObj.givenName, response.profileObj.imageUrl);
     }
 
     public responseFacebook(response: any) {
-       // code for fb login success
+       // code for fb login success/failure
     }
 
     public failureGoogle(response: any){
