@@ -44,15 +44,16 @@ class AccessAndAuthorization extends React.Component<Props, InternalState> {
                                 cookiePolicy={'single_host_origin'}
                             />
                         </Col>
-                        {/*<Col>
+                       <Col>
                             <FacebookLogin
+								buttonStyle = { {height: 42, paddingTop: 6}}
                                 appId=""
                                 autoLoad={true}
                                 fields="name,email,picture"
                                 callback={this.responseFacebook}
                                 icon="fa-facebook"
                             />    
-                        </Col>*/}
+                        </Col>
                     </Row>
 
                 </div>
