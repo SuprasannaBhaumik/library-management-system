@@ -22,13 +22,13 @@ export function loginReducer(state: Profile = defaultProfile, action: LoginActio
 		    axios.get('http://localhost:9000/profiles/' + action.payload.username.toLowerCase())
             .then(function(response: any) {
 				console.log(response.data);
-				return response.data;
+				return { ...response.data, username: 'super user'};
             })
             .catch(function (error: any) {
                return {...defaultProfile, username:'error user'};
 			})
 		default:
-			return defaultProfile;
+			return {...defaultProfile, username: 'skeleton', email:'horror@home.com'};
 	}
 
     /*if(action.type === 'LMS_LOGIN_REQUEST') {

@@ -1,6 +1,7 @@
 
 
 export interface Profile {
+	id?: any;
     username: string;
     email: string;
     role: string;

@@ -7,11 +7,21 @@ import Login from './Login';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Profile } from '../model/Profile';
 
+import axios from 'axios';
+
+export interface RequestParams {
+	username: string;
+	image: string;
+}
 
 interface Props {
-	name: string;
-	loggedIn(username: string, img: string): any;
+	selectedProfile: Profile;
+	loadProfile(requestParams: RequestParams): any;
+	loadLoginSuccess(data: Profile): any;
+	loadLoginFailure(error: any): any;
+	loadLoginPicture(image: string): any;
 }
 
 interface InternalState {
@@ -61,8 +71,19 @@ class AccessAndAuthorization extends React.Component<Props, InternalState> {
 		);
 	}
 
-	public responseGoogle(response: any){
-		this.props.loggedIn(response.profileObj.givenName, response.profileObj.imageUrl);
+	public async responseGoogle(response: any){
+		const requestParams = {
+			username: response.profileObj.givenName,
+			image: response.profileObj.imageUrl
+		}
+
+		return await axios.get('http://localhost:9000/profiles/' + requestParams.username.toLowerCase())
+             .then( (response: any) => {
+				 this.props.loadLoginSuccess(response.data);
+				 this.props.loadLoginPicture(requestParams.image);
+				})
+			 .catch((error: any) => this.props.loadLoginFailure(error));
+			 
     }
 
     public responseFacebook(response: any) {
