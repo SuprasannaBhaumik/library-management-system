@@ -28,14 +28,12 @@ class App extends React.Component<Props, InternalState> {
         super(props);
     }
 
-
     public render() {
 
 		const { selectedProfile } = this.props;
 		const loggedIn = selectedProfile.username !== "" && selectedProfile.email !== "";
         return (
             <div className="App">
-
                 <LMSHeader username={selectedProfile.username} imgUrl={selectedProfile.displayPic}/>
                 {!loggedIn && 
                 <AccessAndAuthorizationContainer/>
@@ -48,8 +46,6 @@ class App extends React.Component<Props, InternalState> {
             </div>
         );
     }
-
-    
 
 }
 
